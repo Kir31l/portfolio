@@ -142,9 +142,9 @@ function updateToggle() {
   var theme = document.documentElement.getAttribute('data-theme');
   var isLight = theme === 'light';
   btn.textContent = isLight ? '\u2600' : '\u263E';
-  if (modeLabel) modeLabel.textContent = isLight ? 'DARK HOUR' : 'PHANTOM THIEF MODE';
+  if (modeLabel) modeLabel.textContent = isLight ? '' : '';
   if (topbarLabel) topbarLabel.textContent = isLight
-    ? '// DARK HOUR ACTIVE — 00:00'
+    ? '// SYS: PORTFOLIO LOADED'
     : '// SYS: PORTFOLIO LOADED';
 }
 document.addEventListener('DOMContentLoaded', function() {
