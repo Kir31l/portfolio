@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RiderLog | Jhon Nicole Landero</title>
+  <meta name="description" content="RiderLog — EW BPO Accounting System for tracking delivery and retrieval expenses for borrowed company assets.">
+  <meta property="og:title" content="RiderLog | Jhon Nicole Landero">
+  <meta property="og:description" content="RiderLog — accounting system for delivery and retrieval expense tracking.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/effects.js"></script>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <aside class="sidebar">
+    <div class="sidebar-deco"></div>
+    <div class="sidebar-inner">
+      <div class="profile-photo-wrap">
+        <img src="https://github.com/Kir31l.png" alt="Jhon Nicole Landero" class="profile-photo">
+      </div>
+      <div class="sidebar-info">
+        <div class="sidebar-name">Jhon Nicole<br>Landero</div>
+        <div class="sidebar-title">Junior Software Dev Intern</div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-contacts">
+        <span class="sidebar-contact-item" tabindex="0" data-copy="nicolelandero16@gmail.com">
+          <span class="sidebar-contact-icon">✉</span>
+          nicolelandero16@gmail.com
+        </span>
+        <span class="sidebar-contact-item" tabindex="0" data-copy="09212054534">
+          <span class="sidebar-contact-icon">☎</span>
+          09212054534
+        </span>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-social">
+        <a href="https://github.com/Kir31l" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/nicole-landero-50b57b40b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <div class="sidebar-mode-label" id="mode-label">PHANTOM THIEF MODE</div>
+    </div>
+  </aside>
+
+  <div class="main-content">
+
+    <div class="topbar">
+      <span class="topbar-left" id="topbar-label">// SYS: PORTFOLIO LOADED</span>
+      <nav class="topbar-nav">
+        <a href="certificates.html">Certificates</a>
+        <a href="../html/shuttle.html">Shuttle</a>
+        <a href="../html/dimple.html">Dimple</a>
+        <a href="../html/retrievals.html">R&amp;D</a>
+        <a href="../html/sort.html">Sort</a>
+      </nav>
+      <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">☾</button>
+    </div>
+
+    <div class="container">
+      <a class="nav-back" href="../index.html">&#60; Back</a>
+
+      <section class="revealed">
+        <h2>RiderLog — EW BPO Accounting System</h2>
+
+        <div class="project-content">
+          <p>Internal tool for tracking delivery and retrieval expenses for borrowed company assets. Manages budgets, records per-rider entries, and exports reports as styled Excel sheets or ZIP packages.</p>
+
+          <h3>Key Concepts</h3>
+          <ul>
+            <li><strong>Budget</strong> — a pool of funds. Only one budget active at a time. Auto-closes when it reaches zero.</li>
+            <li><strong>Submission</strong> — a dated batch of rider entries under a budget, either delivery or retrieval.</li>
+            <li><strong>Rider Entry</strong> — one row: service provider, driver name, vehicle, location, fee, toll in, toll back, and optional photos.</li>
+            <li><strong>Expenses</strong> — fee + toll_entry + toll_back per entry. Both service fees and tolls are expenses.</li>
+          </ul>
+
+          <h3>Features</h3>
+          <ul>
+            <li>Role-based tabs for Delivery and Retrieval entry</li>
+            <li>Live budget bar with expense preview before submission</li>
+            <li>In-place editing of past entries</li>
+            <li>Excel and ZIP export with styled reports and attached photos</li>
+            <li>Full history browser with collapsible submission sheets</li>
+          </ul>
+
+          <h3>Tech Stack</h3>
+          <p>HTML, CSS, vanilla JavaScript, PHP, MySQL. Single-page frontend with a RESTful PHP API backend.</p>
+        </div>
+
+        <div class="project-links">
+          <a href="https://kir31l.github.io/retrievals_and_deliveries/" target="_blank" rel="noopener noreferrer">Launch Live Demo</a>
+          <a href="https://github.com/Kir31l/retrievals_and_deliveries" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Jhon Nicole Landero</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function() {
+  var theme = localStorage.getItem('theme');
+  if (theme) document.documentElement.setAttribute('data-theme', theme);
+  updateToggle();
+})();
+function toggleTheme() {
+  var html = document.documentElement;
+  var current = html.getAttribute('data-theme');
+  var next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateToggle();
+}
+function updateToggle() {
+  var btn = document.querySelector('.theme-toggle');
+  var modeLabel = document.getElementById('mode-label');
+  var topbarLabel = document.getElementById('topbar-label');
+  if (!btn) return;
+  var theme = document.documentElement.getAttribute('data-theme');
+  var isLight = theme === 'light';
+  btn.textContent = isLight ? '\u2600' : '\u263E';
+  if (modeLabel) modeLabel.textContent = isLight ? '' : '';
+  if (topbarLabel) topbarLabel.textContent = isLight
+    ? '// SYS: PORTFOLIO LOADED'
+    : '// SYS: PORTFOLIO LOADED';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('section').forEach(function(s) {
+    observer.observe(s);
+  });
+});
+</script>
+
+</body>
+</html>
