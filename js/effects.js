@@ -4,9 +4,6 @@
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-  // ============================================
-  // THEME HELPERS
-  // ============================================
   function isLightTheme() {
     return document.documentElement.getAttribute('data-theme') === 'light';
   }
@@ -28,7 +25,6 @@
 
     var ctx = canvas.getContext('2d');
     var particles = [];
-    var animId;
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -39,7 +35,7 @@
       var light = isLightTheme();
       return {
         x: Math.random() * canvas.width,
-        y: light ? canvas.height + 10 : canvas.height + 10,
+        y: canvas.height + 10,
         size: Math.random() * 2.5 + 0.8,
         speedX: (Math.random() - 0.5) * (light ? 0.25 : 0.5),
         speedY: -(Math.random() * (light ? 0.35 : 0.7) + 0.2),
@@ -55,12 +51,8 @@
 
     function updateParticles() {
       var count = isLightTheme() ? 20 : 30;
-      while (particles.length < count) {
-        particles.push(createParticle());
-      }
-      if (particles.length > count) {
-        particles.length = count;
-      }
+      while (particles.length < count) particles.push(createParticle());
+      if (particles.length > count) particles.length = count;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -91,7 +83,7 @@
         }
       }
 
-      animId = requestAnimationFrame(updateParticles);
+      requestAnimationFrame(updateParticles);
     }
 
     window.addEventListener('resize', resize);
@@ -103,7 +95,7 @@
   }
 
   // ============================================
-  // CURSOR GLOW (desktop only)
+  // CURSOR GLOW
   // ============================================
   function initCursorGlow() {
     if (reducedMotion || isTouch) return;
@@ -161,10 +153,8 @@
 
     var themeObs = new MutationObserver(function() { applyColors(); });
     themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-
     applyColors();
 
-    // Hide cursor effects over interactive elements
     document.addEventListener('mouseover', function(e) {
       var tag = e.target.tagName;
       if (tag === 'A' || tag === 'BUTTON' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
@@ -221,9 +211,7 @@
       label.textContent = list[index];
     }
 
-    if (!reducedMotion) {
-      setInterval(cycle, 7000);
-    }
+    if (!reducedMotion) setInterval(cycle, 7000);
   }
 
   // ============================================
@@ -270,11 +258,8 @@
       el.addEventListener('click', function() {
         var text = el.getAttribute('data-copy');
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).then(function() {
-            showToast(toast);
-          });
+          navigator.clipboard.writeText(text).then(function() { showToast(toast); });
         } else {
-          // Fallback
           var ta = document.createElement('textarea');
           ta.value = text;
           ta.style.position = 'fixed';
@@ -294,9 +279,270 @@
     void toast.offsetWidth;
     toast.classList.add('toast-show');
     clearTimeout(toast._timer);
-    toast._timer = setTimeout(function() {
-      toast.classList.remove('toast-show');
-    }, 1400);
+    toast._timer = setTimeout(function() { toast.classList.remove('toast-show'); }, 1400);
+  }
+
+  // ============================================
+  // PAGE TRANSITION FLASH
+  // ============================================
+  function initPageTransition() {
+    var overlay = document.createElement('div');
+    overlay.id = 'page-transition';
+    document.body.appendChild(overlay);
+
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a');
+      if (!link) return;
+      var href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
+      if (link.getAttribute('target') === '_blank') return;
+      e.preventDefault();
+      overlay.classList.add('active');
+      setTimeout(function() { window.location.href = href; }, reducedMotion ? 50 : 350);
+    });
+  }
+
+  // ============================================
+  // ACTIVE NAV INDICATOR
+  // ============================================
+  function initActiveNav() {
+    var currentPage = document.body.getAttribute('data-page');
+    if (!currentPage) return;
+    document.querySelectorAll('.topbar-nav a').forEach(function(a) {
+      var href = a.getAttribute('href');
+      var filename = href.split('/').pop().split('?')[0].split('#')[0];
+      var pageName = filename.replace('.html', '');
+      if (pageName === currentPage || (currentPage === 'index' && pageName === '')) {
+        a.classList.add('active');
+      }
+    });
+  }
+
+  // ============================================
+  // SCROLL TO TOP
+  // ============================================
+  function initScrollToTop() {
+    var btn = document.createElement('button');
+    btn.id = 'scroll-top';
+    btn.setAttribute('aria-label', 'Scroll to top');
+    btn.innerHTML = '↑';
+    document.body.appendChild(btn);
+
+    var ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(function() {
+          btn.classList.toggle('visible', window.scrollY > 300);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    btn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  // ============================================
+  // MOBILE SIDEBAR TOGGLE
+  // ============================================
+  function initMobileSidebar() {
+    var sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    var toggle = document.createElement('button');
+    toggle.id = 'sidebar-toggle';
+    toggle.setAttribute('aria-label', 'Toggle navigation');
+    toggle.innerHTML = '☰';
+    document.body.appendChild(toggle);
+
+    var overlay = document.createElement('div');
+    overlay.id = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+
+    function open() {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', function() {
+      if (sidebar.classList.contains('open')) { close(); } else { open(); }
+    });
+
+    overlay.addEventListener('click', close);
+
+    sidebar.querySelectorAll('a, span[data-copy]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        if (el.hasAttribute('data-copy') || (el.tagName === 'A' && el.getAttribute('target') !== '_blank')) {
+          setTimeout(close, 100);
+        } else {
+          close();
+        }
+      });
+    });
+  }
+
+  // ============================================
+  // EASTER EGG — KONAMI CODE + LOGO CLICKS
+  // ============================================
+  function initEasterEgg() {
+    var konami = [38,38,40,40,37,39,37,39,66,65];
+    var pos = 0;
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === konami[pos]) {
+        pos++;
+        if (pos === konami.length) { triggerAllOutAttack(); pos = 0; }
+      } else { pos = 0; }
+    });
+
+    var photo = document.querySelector('.profile-photo');
+    if (photo) {
+      var clicks = 0;
+      photo.addEventListener('click', function() {
+        clicks++;
+        if (clicks >= 10) { triggerAllOutAttack(); clicks = 0; }
+      });
+    }
+  }
+
+  function triggerAllOutAttack() {
+    var el = document.getElementById('all-out-attack');
+    if (el) return;
+    var flash = document.createElement('div');
+    flash.id = 'all-out-attack';
+    var text = document.createElement('span');
+    text.textContent = 'ALL-OUT ATTACK';
+    flash.appendChild(text);
+    document.body.appendChild(flash);
+    requestAnimationFrame(function() { flash.classList.add('active'); });
+    setTimeout(function() {
+      flash.classList.remove('active');
+      setTimeout(function() { if (flash.parentNode) flash.parentNode.removeChild(flash); }, 600);
+    }, 1200);
+  }
+
+  // ============================================
+  // AMBIENT SOUND TOGGLE — persists across pages via localStorage
+  // ============================================
+  function initAmbientSound() {
+    var btn = document.createElement('button');
+    btn.id = 'ambient-toggle';
+    btn.setAttribute('aria-label', 'Toggle ambient sound');
+    document.body.appendChild(btn);
+
+    var audio = null;
+    var playing = false;
+    var saveTimer = null;
+
+    function basePath() {
+      return window.location.pathname.startsWith('/html/') ? '../' : '';
+    }
+
+    function getGif() {
+      return basePath() + 'css/music/' + (isLightTheme() ? 'p3.gif' : 'p5.gif');
+    }
+
+    function getAudio() {
+      var file = isLightTheme() ? 'Color Your Night.mp3' : 'Beneath the Mask -rain-.mp3';
+      return basePath() + 'css/music/' + encodeURIComponent(file);
+    }
+
+    function setGif() {
+      btn.style.backgroundImage = 'url(' + getGif() + ')';
+    }
+
+    function saveState() {
+      var data = { playing: playing, time: audio ? audio.currentTime : 0, theme: isLightTheme() ? 'light' : 'dark' };
+      try { localStorage.setItem('ambient', JSON.stringify(data)); } catch(e) {}
+    }
+
+    function loadState() {
+      try {
+        var raw = localStorage.getItem('ambient');
+        return raw ? JSON.parse(raw) : null;
+      } catch(e) { return null; }
+    }
+
+    function startSound(resumeTime) {
+      if (audio) audio.pause();
+      audio = new Audio(getAudio());
+      audio.loop = true;
+      audio.volume = 0.15;
+      if (resumeTime > 0) audio.currentTime = resumeTime;
+      audio.play();
+      playing = true;
+      btn.classList.add('active');
+      clearInterval(saveTimer);
+      saveTimer = setInterval(saveState, 1000);
+    }
+
+    function stopSound() {
+      if (audio) { audio.pause(); audio = null; }
+      playing = false;
+      btn.classList.remove('active');
+      clearInterval(saveTimer);
+      saveState();
+    }
+
+    setGif();
+
+    // Resume from previous page if was playing
+    var prev = loadState();
+    if (prev && prev.playing && prev.theme === (isLightTheme() ? 'light' : 'dark')) {
+      startSound(prev.time || 0);
+    }
+
+    btn.addEventListener('click', function() {
+      if (playing) { stopSound(); } else { startSound(0); }
+    });
+
+    var themeObs = new MutationObserver(function() {
+      setGif();
+      if (playing) {
+        var t = audio ? audio.currentTime : 0;
+        stopSound();
+        startSound(t);
+      }
+    });
+    themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    // Save state before page unload
+    window.addEventListener('beforeunload', saveState);
+  }
+
+  // ============================================
+  // SERVICE WORKER
+  // ============================================
+  function initServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/js/sw.js');
+    }
+  }
+
+  // ============================================
+  // PREFETCH NEARBY PAGES
+  // ============================================
+  function initPrefetch() {
+    if (!document.querySelector) return;
+    var links = document.querySelectorAll('.topbar-nav a, .sidebar-social a[href$=".html"]');
+    var prefetched = {};
+    links.forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (!href || href.startsWith('http') || prefetched[href]) return;
+      prefetched[href] = true;
+      var link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = href;
+      document.head.appendChild(link);
+    });
   }
 
   // ============================================
@@ -309,6 +555,14 @@
     initSectionGlow();
     initToggleFeedback();
     initClipboardCopy();
+    initPageTransition();
+    initActiveNav();
+    initScrollToTop();
+    initMobileSidebar();
+    initEasterEgg();
+    initAmbientSound();
+    initServiceWorker();
+    initPrefetch();
   }
 
   if (document.readyState === 'loading') {
