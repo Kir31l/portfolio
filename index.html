@@ -50,29 +50,31 @@
 
       <div class="sidebar-divider"></div>
 
-      <!-- Social / Nav -->
+      <!-- Social -->
       <div class="sidebar-social">
+        <a href="html/certificates.html">Certificates</a>
         <a href="https://github.com/Kir31l" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/nicole-landero-50b57b40b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
 
-      <div class="sidebar-mode-label" id="mode-label">PHANTOM THIEF MODE</div>
     </div>
   </aside>
 
   <!-- ===== MAIN CONTENT ===== -->
   <div class="main-content">
 
-    <div class="topbar">
-      <span class="topbar-left" id="topbar-label">// SYS: PORTFOLIO LOADED</span>
-      <nav class="topbar-nav">
-        <a href="html/certificates.html">Certificates</a>
-        <a href="html/shuttle.html">Shuttle</a>
-        <a href="html/dimple.html">Dimple</a>
-        <a href="html/retrievals.html">R&amp;D</a>
-        <a href="html/sort.html">Sort</a>
-      </nav>
+    <nav class="top-nav">
+      <div class="top-nav-left">
+        <span class="top-nav-brand" id="topbar-label">// SYS: PORTFOLIO LOADED</span>
+      </div>
       <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">☾</button>
+    </nav>
+
+    <div class="spotlight" id="spotlight">
+      <div class="spotlight-track" id="spotlight-track"></div>
+      <div class="spotlight-controls">
+        <div class="spotlight-indicators" id="spotlight-indicators"></div>
+      </div>
     </div>
 
     <div class="container">
@@ -208,6 +210,127 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('section').forEach(function(s) {
     observer.observe(s);
   });
+
+  /* ----- Spotlight carousel ----- */
+  (function() {
+    var spotlightData = [
+      {
+        title: "EASTWEST Shuttle Management System",
+        desc: "A web-based shuttle dispatching application with secure authentication and role-based access control for Super Admin, Admin, and Dispatcher roles.",
+        badges: ["Web App", "PHP & MySQL", "2026"],
+        url: "html/shuttle.html",
+        img: "css/shuttle.png"
+      },
+      {
+        title: "Dimple Star Transport",
+        desc: "A front-end bus booking system for a Philippine bus company serving Metro Manila and Oriental Mindoro since 1993.",
+        badges: ["Front-End", "Vanilla JS", "2026"],
+        url: "html/dimple.html",
+        img: "css/dimple.png"
+      },
+      {
+        title: "RiderLog Accounting System",
+        desc: "Internal tool for tracking delivery and retrieval expenses for borrowed company assets with Excel and ZIP export features.",
+        badges: ["Web App", "PHP & MySQL", "2026"],
+        url: "html/retrievals.html",
+        img: "css/ridelog.png"
+      },
+      {
+        title: "Sorting Algorithm Visualizer",
+        desc: "Animate five classic sorting algorithms step-by-step with async/await, color-coded bar states, and adjustable controls.",
+        badges: ["Tool", "Vanilla JS", "2026"],
+        url: "html/sort.html",
+        img: "css/sort.png"
+      }
+    ];
+
+    var track = document.getElementById('spotlight-track');
+    var indicators = document.getElementById('spotlight-indicators');
+    if (!track || !indicators) return;
+
+    var current = 0;
+    var total = spotlightData.length;
+    var interval;
+
+    function buildSlides() {
+      spotlightData.forEach(function(p, i) {
+        var slide = document.createElement('div');
+        slide.className = 'spotlight-slide';
+
+        var bg = document.createElement('div');
+        bg.className = 'spotlight-slide-bg';
+        bg.style.backgroundImage = 'url(' + p.img + ')';
+        bg.style.backgroundSize = 'cover';
+        bg.style.backgroundPosition = 'center';
+        slide.appendChild(bg);
+
+        var content = document.createElement('div');
+        content.className = 'spotlight-content';
+
+        var badges = document.createElement('div');
+        badges.className = 'spotlight-badges';
+        p.badges.forEach(function(b) {
+          var span = document.createElement('span');
+          span.textContent = b;
+          badges.appendChild(span);
+        });
+        content.appendChild(badges);
+
+        var h1 = document.createElement('h1');
+        h1.className = 'spotlight-title';
+        h1.textContent = p.title;
+        content.appendChild(h1);
+
+        var desc = document.createElement('p');
+        desc.className = 'spotlight-desc';
+        desc.textContent = p.desc;
+        content.appendChild(desc);
+
+        var cta = document.createElement('a');
+        cta.className = 'spotlight-cta';
+        cta.href = p.url;
+        cta.textContent = '\u25B6 View Project';
+        content.appendChild(cta);
+
+        slide.appendChild(content);
+        track.appendChild(slide);
+
+        var dot = document.createElement('span');
+        dot.setAttribute('data-index', i);
+        dot.addEventListener('click', function() {
+          goTo(parseInt(this.getAttribute('data-index')));
+          resetInterval();
+        });
+        indicators.appendChild(dot);
+      });
+    }
+
+    function goTo(index) {
+      current = index;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      var dots = indicators.querySelectorAll('span');
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function next() {
+      goTo((current + 1) % total);
+    }
+
+    function resetInterval() {
+      clearInterval(interval);
+      interval = setInterval(next, 6000);
+    }
+
+    buildSlides();
+    goTo(0);
+    interval = setInterval(next, 6000);
+
+    var spotlightEl = document.getElementById('spotlight');
+    spotlightEl.addEventListener('mouseenter', function() { clearInterval(interval); });
+    spotlightEl.addEventListener('mouseleave', function() { resetInterval(); });
+  })();
 });
 </script>
 

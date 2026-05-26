@@ -303,22 +303,6 @@
   }
 
   // ============================================
-  // ACTIVE NAV INDICATOR
-  // ============================================
-  function initActiveNav() {
-    var currentPage = document.body.getAttribute('data-page');
-    if (!currentPage) return;
-    document.querySelectorAll('.topbar-nav a').forEach(function(a) {
-      var href = a.getAttribute('href');
-      var filename = href.split('/').pop().split('?')[0].split('#')[0];
-      var pageName = filename.replace('.html', '');
-      if (pageName === currentPage || (currentPage === 'index' && pageName === '')) {
-        a.classList.add('active');
-      }
-    });
-  }
-
-  // ============================================
   // SCROLL TO TOP
   // ============================================
   function initScrollToTop() {
@@ -443,7 +427,7 @@
     var saveTimer = null;
 
     function basePath() {
-      return window.location.pathname.startsWith('/html/') ? '../' : '';
+      return window.location.pathname.indexOf('/html/') !== -1 ? '../' : '';
     }
 
     function getGif() {
@@ -477,11 +461,20 @@
       audio.loop = true;
       audio.volume = 0.15;
       if (resumeTime > 0) audio.currentTime = resumeTime;
-      audio.play();
+      var playPromise = audio.play();
       playing = true;
       btn.classList.add('active');
       clearInterval(saveTimer);
       saveTimer = setInterval(saveState, 1000);
+      if (playPromise) {
+        playPromise.catch(function() {
+          playing = false;
+          btn.classList.remove('active');
+          clearInterval(saveTimer);
+          saveTimer = null;
+          saveState();
+        });
+      }
     }
 
     function stopSound() {
@@ -528,23 +521,6 @@
   }
 
   // ============================================
-  // PREFETCH NEARBY PAGES
-  // ============================================
-  function initPrefetch() {
-    if (!document.querySelector) return;
-    var links = document.querySelectorAll('.topbar-nav a, .sidebar-social a[href$=".html"]');
-    var prefetched = {};
-    links.forEach(function(a) {
-      var href = a.getAttribute('href');
-      if (!href || href.startsWith('http') || prefetched[href]) return;
-      prefetched[href] = true;
-      var link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = href;
-      document.head.appendChild(link);
-    });
-  }
-
   // ============================================
   // INIT
   // ============================================
@@ -556,13 +532,11 @@
     initToggleFeedback();
     initClipboardCopy();
     initPageTransition();
-    initActiveNav();
     initScrollToTop();
     initMobileSidebar();
     initEasterEgg();
     initAmbientSound();
     initServiceWorker();
-    initPrefetch();
   }
 
   if (document.readyState === 'loading') {

@@ -39,46 +39,52 @@
         </span>
       </div>
       <div class="sidebar-divider"></div>
+
       <div class="sidebar-social">
+        <a href="certificates.html">Certificates</a>
         <a href="https://github.com/Kir31l" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/nicole-landero-50b57b40b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
-      <div class="sidebar-mode-label" id="mode-label">PHANTOM THIEF MODE</div>
+
+
     </div>
   </aside>
 
   <div class="main-content">
 
-    <div class="topbar">
-      <span class="topbar-left" id="topbar-label">// SYS: PORTFOLIO LOADED</span>
-      <nav class="topbar-nav">
-        <a href="certificates.html">Certificates</a>
-        <a href="../html/shuttle.html">Shuttle</a>
-        <a href="../html/dimple.html">Dimple</a>
-        <a href="../html/retrievals.html">R&amp;D</a>
-        <a href="../html/sort.html">Sort</a>
-      </nav>
+    <nav class="top-nav">
+      <div class="top-nav-left">
+        <button class="nav-back" onclick="history.back()" aria-label="Go back">←</button>
+      </div>
       <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">☾</button>
-    </div>
+    </nav>
 
     <div class="container">
-      <a class="nav-back" href="../index.html">&#60; Back</a>
 
-      <section class="revealed">
-        <h2>RiderLog — EW BPO Accounting System</h2>
+      <section class="showcase-hero revealed">
+        <h1>RiderLog — EW BPO Accounting System</h1>
+        <p class="showcase-tagline">Internal tool for tracking delivery and retrieval expenses for borrowed company assets. Manages budgets, records per-rider entries, and exports reports as styled Excel sheets or ZIP packages.</p>
+        <div class="showcase-actions">
+          <a href="https://kir31l.github.io/retrievals_and_deliveries/" target="_blank" rel="noopener noreferrer">Launch Live Demo</a>
+          <a href="https://github.com/Kir31l/retrievals_and_deliveries" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </section>
 
+      <section>
+        <h2>Key Concepts</h2>
         <div class="project-content">
-          <p>Internal tool for tracking delivery and retrieval expenses for borrowed company assets. Manages budgets, records per-rider entries, and exports reports as styled Excel sheets or ZIP packages.</p>
-
-          <h3>Key Concepts</h3>
           <ul>
             <li><strong>Budget</strong> — a pool of funds. Only one budget active at a time. Auto-closes when it reaches zero.</li>
             <li><strong>Submission</strong> — a dated batch of rider entries under a budget, either delivery or retrieval.</li>
             <li><strong>Rider Entry</strong> — one row: service provider, driver name, vehicle, location, fee, toll in, toll back, and optional photos.</li>
             <li><strong>Expenses</strong> — fee + toll_entry + toll_back per entry. Both service fees and tolls are expenses.</li>
           </ul>
+        </div>
+      </section>
 
-          <h3>Features</h3>
+      <section>
+        <h2>Features</h2>
+        <div class="project-content">
           <ul>
             <li>Role-based tabs for Delivery and Retrieval entry</li>
             <li>Live budget bar with expense preview before submission</li>
@@ -86,14 +92,22 @@
             <li>Excel and ZIP export with styled reports and attached photos</li>
             <li>Full history browser with collapsible submission sheets</li>
           </ul>
+        </div>
+      </section>
 
-          <h3>Tech Stack</h3>
+      <section>
+        <h2>Tech Stack</h2>
+        <div class="project-content">
           <p>HTML, CSS, vanilla JavaScript, PHP, MySQL. Single-page frontend with a RESTful PHP API backend.</p>
         </div>
+      </section>
 
-        <div class="project-links">
-          <a href="https://kir31l.github.io/retrievals_and_deliveries/" target="_blank" rel="noopener noreferrer">Launch Live Demo</a>
-          <a href="https://github.com/Kir31l/retrievals_and_deliveries" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      <section class="feature-projects revealed">
+        <h2>Other Projects</h2>
+        <div class="feature-project-links">
+          <a href="shuttle.html">Shuttle</a>
+          <a href="dimple.html">Dimple</a>
+          <a href="sort.html">Sort</a>
         </div>
       </section>
     </div>
