@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorting Visualizer | Jhon Nicole Landero</title>
+  <meta name="description" content="Sorting Algorithm Visualizer — animate five classic sorting algorithms step-by-step with vanilla JavaScript.">
+  <meta property="og:title" content="Sorting Visualizer | Jhon Nicole Landero">
+  <meta property="og:description" content="Sorting Algorithm Visualizer — bubble, selection, insertion, merge, and quick sort.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/effects.js"></script>
+</head>
+<body data-page="sort">
+
+<div class="page-wrapper">
+
+  <aside class="sidebar">
+    <div class="sidebar-deco"></div>
+    <div class="sidebar-inner">
+      <div class="profile-photo-wrap">
+        <img src="https://github.com/Kir31l.png" alt="Jhon Nicole Landero" class="profile-photo">
+      </div>
+      <div class="sidebar-info">
+        <div class="sidebar-name">Jhon Nicole<br>Landero</div>
+        <div class="sidebar-title">Junior Software Dev Intern</div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-contacts">
+        <span class="sidebar-contact-item" tabindex="0" data-copy="nicolelandero16@gmail.com">
+          <span class="sidebar-contact-icon">✉</span>
+          nicolelandero16@gmail.com
+        </span>
+        <span class="sidebar-contact-item" tabindex="0" data-copy="09212054534">
+          <span class="sidebar-contact-icon">☎</span>
+          09212054534
+        </span>
+      </div>
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-social">
+        <a href="certificates.html">Certificates</a>
+        <a href="https://github.com/Kir31l" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/nicole-landero-50b57b40b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+
+    </div>
+  </aside>
+
+  <div class="main-content">
+
+    <nav class="top-nav">
+      <div class="top-nav-left">
+        <button class="nav-back" onclick="history.back()" aria-label="Go back">←</button>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">☾</button>
+    </nav>
+
+    <div class="container">
+
+      <section class="showcase-hero revealed">
+        <h1>Sorting Algorithm Visualizer</h1>
+        <p class="showcase-tagline">A frontend portfolio project built with vanilla HTML, CSS, and JavaScript. Animates five classic sorting algorithms step-by-step using <code>async/await</code> and DOM manipulation — no libraries required.</p>
+        <div class="showcase-actions">
+          <a href="https://kir31l.github.io/sort/" target="_blank" rel="noopener noreferrer">Launch Live Demo</a>
+          <a href="https://github.com/Kir31l/sort" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Algorithms</h2>
+        <div class="project-content">
+          <ul>
+            <li><strong>Bubble Sort</strong> — O(n²) — compares adjacent pairs and swaps if out of order</li>
+            <li><strong>Selection Sort</strong> — O(n²) — scans for the minimum and swaps it to the front</li>
+            <li><strong>Insertion Sort</strong> — O(n²) worst, O(n) best — builds sorted array one element at a time</li>
+            <li><strong>Merge Sort</strong> — O(n log n) — divide and conquer with recursive splitting</li>
+            <li><strong>Quick Sort</strong> — O(n log n) average — picks a pivot and partitions</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <div class="project-content">
+          <ul>
+            <li>Color-coded bar states: comparing (amber), swapping (red), sorted (green), pivot (purple)</li>
+            <li>Live tracking of comparisons, swaps, and elapsed time</li>
+            <li>Adjustable array size (10–80) and animation speed</li>
+            <li>Stop button cleanly interrupts any algorithm mid-sort</li>
+            <li>Big-O complexity table highlights the active algorithm</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Key JavaScript Concepts</h2>
+        <div class="project-content">
+          <ul>
+            <li><code>async/await</code> + <code>Promise</code> + <code>setTimeout</code> for animation heartbeat</li>
+            <li>ES6 destructuring swap, <code>Array.from()</code>, <code>Array.map()</code></li>
+            <li>Recursive merge sort and quick sort implementations</li>
+            <li>State management via <code>running</code> / <code>stopFlag</code> and <code>arr</code> / <code>bars</code> sync pattern</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tech Stack</h2>
+        <div class="project-content">
+          <p>Everything in a single <code>index.html</code> — no build tools, no dependencies, no frameworks.</p>
+        </div>
+      </section>
+
+      <section class="feature-projects revealed">
+        <h2>Other Projects</h2>
+        <div class="feature-project-links">
+          <a href="shuttle.html">Shuttle</a>
+          <a href="dimple.html">Dimple</a>
+          <a href="retrievals.html">R&amp;D</a>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Jhon Nicole Landero</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function() {
+  var theme = localStorage.getItem('theme');
+  if (theme) document.documentElement.setAttribute('data-theme', theme);
+  updateToggle();
+})();
+function toggleTheme() {
+  var html = document.documentElement;
+  var current = html.getAttribute('data-theme');
+  var next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateToggle();
+}
+function updateToggle() {
+  var btn = document.querySelector('.theme-toggle');
+  var modeLabel = document.getElementById('mode-label');
+  var topbarLabel = document.getElementById('topbar-label');
+  if (!btn) return;
+  var theme = document.documentElement.getAttribute('data-theme');
+  var isLight = theme === 'light';
+  btn.textContent = isLight ? '\u2600' : '\u263E';
+  if (modeLabel) modeLabel.textContent = isLight ? '' : '';
+  if (topbarLabel) topbarLabel.textContent = isLight
+    ? '// SYS: PORTFOLIO LOADED'
+    : '// SYS: PORTFOLIO LOADED';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('section').forEach(function(s) {
+    observer.observe(s);
+  });
+});
+</script>
+
+</body>
+</html>
