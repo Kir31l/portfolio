@@ -516,7 +516,10 @@
   // ============================================
   function initServiceWorker() {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/js/sw.js');
+      var scripts = document.getElementsByTagName('script');
+      var thisScript = scripts[scripts.length - 1];
+      var basePath = thisScript.src.substring(0, thisScript.src.lastIndexOf('/js/'));
+      navigator.serviceWorker.register(basePath + '/sw.js');
     }
   }
 

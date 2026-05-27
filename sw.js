@@ -1,17 +1,16 @@
-var CACHE = 'portfolio-v1';
+var CACHE = 'portfolio-v2';
 
 var urls = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/effects.js',
-  '/favicon.svg',
-  '/certificates.html',
-  '/html/certificates.html',
-  '/html/shuttle.html',
-  '/html/dimple.html',
-  '/html/retrievals.html',
-  '/html/sort.html'
+  './',
+  'index.html',
+  'css/style.css',
+  'js/effects.js',
+  'favicon.svg',
+  'html/certificates.html',
+  'html/shuttle.html',
+  'html/dimple.html',
+  'html/retrievals.html',
+  'html/sort.html'
 ];
 
 self.addEventListener('install', function(e) {
