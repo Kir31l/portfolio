@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimple Star Transport | Jhon Nicole Landero</title>
+  <meta name="description" content="Dimple Star Transport — a front-end web booking system for a Philippine bus company serving Metro Manila and Oriental Mindoro.">
+  <meta property="og:title" content="Dimple Star Transport | Jhon Nicole Landero">
+  <meta property="og:description" content="Dimple Star Transport — online bus ticket booking system.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/effects.js"></script>
+</head>
+<body data-page="dimple">
+
+<div class="page-wrapper">
+
+  <aside class="sidebar">
+    <div class="sidebar-deco"></div>
+    <div class="sidebar-inner">
+      <div class="profile-photo-wrap">
+        <img src="https://github.com/Kir31l.png" alt="Jhon Nicole Landero" class="profile-photo">
+      </div>
+      <div class="sidebar-info">
+        <div class="sidebar-name">Jhon Nicole<br>Landero</div>
+        <div class="sidebar-title">Junior Software Dev Intern</div>
+      </div>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-contacts">
+        <span class="sidebar-contact-item" tabindex="0" data-copy="nicolelandero16@gmail.com">
+          <span class="sidebar-contact-icon">✉</span>
+          nicolelandero16@gmail.com
+        </span>
+        <span class="sidebar-contact-item" tabindex="0" data-copy="09212054534">
+          <span class="sidebar-contact-icon">☎</span>
+          09212054534
+        </span>
+      </div>
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-social">
+        <a href="certificates.html">Certificates</a>
+        <a href="https://github.com/Kir31l" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/nicole-landero-50b57b40b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+
+    </div>
+  </aside>
+
+  <div class="main-content">
+
+    <nav class="top-nav">
+      <div class="top-nav-left">
+        <button class="nav-back" onclick="history.back()" aria-label="Go back">←</button>
+      </div>
+      <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">☾</button>
+    </nav>
+
+    <div class="container">
+
+      <section class="showcase-hero revealed">
+        <h1>Dimple Star Transport</h1>
+        <p class="showcase-tagline">A front-end website for a Philippine bus company serving Metro Manila and Oriental Mindoro since 1993. Browse routes, view terminal information, and book tickets entirely in the browser — no backend required.</p>
+        <div class="showcase-actions">
+          <a href="https://kir31l.github.io/Dimple/" target="_blank" rel="noopener noreferrer">Launch Live Demo</a>
+          <a href="https://github.com/Kir31l/Dimple" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>Pages</h2>
+        <div class="project-content">
+          <ul>
+            <li><strong>Home</strong> — Hero section with quick route search</li>
+            <li><strong>About</strong> — Company history, mission, and vision</li>
+            <li><strong>Terminal</strong> — Directory of all terminals across Metro Manila and Mindoro</li>
+            <li><strong>Route Schedule</strong> — Full route and schedule browser</li>
+            <li><strong>Book</strong> — Seat selection and ticket booking form</li>
+            <li><strong>Contact</strong> — Contact information and inquiry form</li>
+            <li><strong>Sign Up / Login</strong> — User authentication via <code>sessionStorage</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Routes Covered</h2>
+        <div class="project-content">
+          <p>Buses depart from six Metro Manila terminals to San Jose, Oriental Mindoro. Fare: ₱300 (Air Conditioned) · ₱200 (Ordinary).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tech Stack</h2>
+        <div class="project-content">
+          <p>Pure HTML, CSS, and vanilla JavaScript — no frameworks, no build tools, no server required. Data is handled entirely client-side via <code>sessionStorage</code>.</p>
+        </div>
+      </section>
+
+      <section class="feature-projects revealed">
+        <h2>Other Projects</h2>
+        <div class="feature-project-links">
+          <a href="shuttle.html">Shuttle</a>
+          <a href="retrievals.html">R&amp;D</a>
+          <a href="sort.html">Sort</a>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 Jhon Nicole Landero</p>
+    </footer>
+  </div>
+</div>
+
+<script>
+(function() {
+  var theme = localStorage.getItem('theme');
+  if (theme) document.documentElement.setAttribute('data-theme', theme);
+  updateToggle();
+})();
+function toggleTheme() {
+  var html = document.documentElement;
+  var current = html.getAttribute('data-theme');
+  var next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateToggle();
+}
+function updateToggle() {
+  var btn = document.querySelector('.theme-toggle');
+  var modeLabel = document.getElementById('mode-label');
+  var topbarLabel = document.getElementById('topbar-label');
+  if (!btn) return;
+  var theme = document.documentElement.getAttribute('data-theme');
+  var isLight = theme === 'light';
+  btn.textContent = isLight ? '\u2600' : '\u263E';
+  if (modeLabel) modeLabel.textContent = isLight ? '' : '';
+  if (topbarLabel) topbarLabel.textContent = isLight
+    ? '// SYS: PORTFOLIO LOADED'
+    : '// SYS: PORTFOLIO LOADED';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('section').forEach(function(s) {
+    observer.observe(s);
+  });
+});
+</script>
+
+</body>
+</html>
