@@ -1696,3 +1696,83 @@ section, .cert-card {
   border-color: var(--accent);
   box-shadow: 0 0 12px var(--accent-glow);
 }
+
+/* ============================================================
+   CONTACT FORM
+   ============================================================ */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 520px;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+:root:not([data-theme="light"]) .contact-field input,
+:root:not([data-theme="light"]) .contact-field textarea {
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.7rem 1.8rem;
+  background: var(--accent2);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 24px var(--accent-glow);
+  align-self: flex-start;
+}
+
+:root:not([data-theme="light"]) .contact-submit {
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  border-radius: 0;
+}
+
+[data-theme="light"] .contact-submit {
+  border-radius: 4px;
+}
+
+.contact-submit:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 40px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+/* Netlify honeypot: hide the spam trap */
+.contact-form [data-netlify-honeypot] {
+  display: none;
+}
