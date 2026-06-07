@@ -289,6 +289,9 @@
     var overlay = document.createElement('div');
     overlay.id = 'page-transition';
     document.body.appendChild(overlay);
+    window.addEventListener('pageshow', function() {
+      overlay.classList.remove('active');
+    });
 
     document.addEventListener('click', function(e) {
       var link = e.target.closest('a');
