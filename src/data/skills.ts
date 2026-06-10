@@ -1,0 +1,16 @@
+export const skills: string[] = [
+  'C++ Programming',
+  'C# Programming',
+  'CSS',
+  'HTML5',
+  'Front End Development',
+  'JavaScript',
+  'PHP & MySQL',
+  'RESTful API Integration',
+  'Database Management',
+  'UI/UX Design',
+  'WordPress Development',
+  'Shopify Development',
+  'Excel & Report Automation',
+  'Agile Development',
+]
