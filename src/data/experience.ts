@@ -4,6 +4,7 @@ export interface Experience {
   date: string
   paragraphs: string[]
   highlights: string[]
+  summary: string
 }
 
 export const experience: Experience = {
@@ -24,6 +25,7 @@ export const experience: Experience = {
     'Excel and report export automation',
     'Debugging and collaborative development',
   ],
+  summary: 'Successfully delivered internal business tools that streamlined shuttle operations, expense tracking, and accounting processes while improving data organization and reporting efficiency.',
 }
 
 export interface Education {
@@ -36,4 +38,14 @@ export const education: Education = {
   degree: 'Bachelor of Information Technology',
   school: 'Our Lady of Fatima University',
   date: 'Finished 2026',
+}
+
+export interface Capstone {
+  title: string
+  description: string
+}
+
+export const capstone: Capstone = {
+  title: 'SunSweep: The Solar-Powered Biodegradable Waste Robot',
+  description: 'An autonomous solar-powered robot for biodegradable waste collection in outdoor campus environments. Integrates ultrasonic and RGB sensor navigation, vacuum-based collection, solar energy, and a real-time web monitoring dashboard — built with Agile methodology and evaluated under the ISO/IEC 25010 Software Quality Model.',
 }

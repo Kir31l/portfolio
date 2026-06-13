@@ -15,7 +15,7 @@ import Footer from '../components/Footer'
 import Spotlight from '../components/Spotlight'
 import SectionReveal from '../components/SectionReveal'
 import ContactForm from '../components/ContactForm'
-import { experience, education } from '../data/experience'
+import { experience, education, capstone } from '../data/experience'
 import { skills } from '../data/skills'
 
 export default function Home() {
@@ -65,11 +65,7 @@ export default function Home() {
                   <li key={i}>{h}</li>
                 ))}
               </ul>
-              <p>
-                Successfully delivered internal business tools that streamlined shuttle
-                operations, expense tracking, and accounting processes while improving
-                data organization and reporting efficiency.
-              </p>
+              <p>{experience.summary}</p>
             </div>
           </SectionReveal>
 
@@ -85,16 +81,10 @@ export default function Home() {
           <SectionReveal>
             <h2>Capstone Project</h2>
             <div className="exp-header">
-              <h3>SunSweep: The Solar-Powered Biodegradable Waste Robot</h3>
+              <h3>{capstone.title}</h3>
             </div>
             <div className="project-desc">
-              <p>
-                An autonomous solar-powered robot for biodegradable waste collection in
-                outdoor campus environments. Integrates ultrasonic and RGB sensor navigation,
-                vacuum-based collection, solar energy, and a real-time web monitoring
-                dashboard — built with Agile methodology and evaluated under the
-                ISO/IEC 25010 Software Quality Model.
-              </p>
+              <p>{capstone.description}</p>
             </div>
           </SectionReveal>
 
