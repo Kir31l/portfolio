@@ -1,14 +1,4 @@
-import { useParticles } from '../hooks/useParticles'
-import { useCursorGlow } from '../hooks/useCursorGlow'
 import { useSysMessages } from '../hooks/useSysMessages'
-import { useSectionGlow } from '../hooks/useSectionGlow'
-import { useClipboardCopy } from '../hooks/useClipboardCopy'
-import { usePageTransition } from '../hooks/usePageTransition'
-import { useScrollToTop } from '../hooks/useScrollToTop'
-import { useMobileSidebar } from '../hooks/useMobileSidebar'
-import { useEasterEgg } from '../hooks/useEasterEgg'
-import { useToggleFeedback } from '../hooks/useToggleFeedback'
-import { useServiceWorker } from '../hooks/useServiceWorker'
 import Sidebar from '../components/Sidebar'
 import TopNav from '../components/TopNav'
 import Footer from '../components/Footer'
@@ -19,18 +9,7 @@ import { experience, education, capstone } from '../data/experience'
 import { skills } from '../data/skills'
 
 export default function Home() {
-  // Mount all global effects
-  useParticles()
-  useCursorGlow()
   useSysMessages()
-  useSectionGlow()
-  useClipboardCopy()
-  usePageTransition()
-  useScrollToTop()
-  useMobileSidebar()
-  useEasterEgg()
-  useToggleFeedback()
-  useServiceWorker()
 
   return (
     <div className="page-wrapper">

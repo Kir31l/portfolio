@@ -1,29 +1,9 @@
-import { useParticles } from '../hooks/useParticles'
-import { useCursorGlow } from '../hooks/useCursorGlow'
-import { useSectionGlow } from '../hooks/useSectionGlow'
-import { useClipboardCopy } from '../hooks/useClipboardCopy'
-import { usePageTransition } from '../hooks/usePageTransition'
-import { useScrollToTop } from '../hooks/useScrollToTop'
-import { useMobileSidebar } from '../hooks/useMobileSidebar'
-import { useEasterEgg } from '../hooks/useEasterEgg'
-import { useToggleFeedback } from '../hooks/useToggleFeedback'
-import { useServiceWorker } from '../hooks/useServiceWorker'
 import Sidebar from '../components/Sidebar'
 import TopNav from '../components/TopNav'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 
 export default function NotFound() {
-  useParticles()
-  useCursorGlow()
-  useSectionGlow()
-  useClipboardCopy()
-  usePageTransition()
-  useScrollToTop()
-  useMobileSidebar()
-  useEasterEgg()
-  useToggleFeedback()
-  useServiceWorker()
 
   return (
     <div className="page-wrapper">
