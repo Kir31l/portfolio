@@ -4,7 +4,6 @@ import TopNav from '../components/TopNav'
 import Footer from '../components/Footer'
 import Spotlight from '../components/Spotlight'
 import SectionReveal from '../components/SectionReveal'
-import ContactForm from '../components/ContactForm'
 import { experiences, education } from '../data/experience'
 import { skills } from '../data/skills'
 
@@ -64,13 +63,6 @@ export default function Home() {
             <div className="exp-sub">{education.school}</div>
           </SectionReveal>
 
-          <SectionReveal>
-            <h2>Contact</h2>
-            <p style={{ marginBottom: '1.2rem' }}>
-              Have a project in mind or just want to say hi? Drop me a message.
-            </p>
-            <ContactForm />
-          </SectionReveal>
         </div>
 
         <Footer />

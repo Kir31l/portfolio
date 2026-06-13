@@ -151,7 +151,7 @@ export default function Spotlight() {
             <div
               className="spotlight-slide-bg"
               style={{
-                backgroundImage: `url(${p.img})`,
+                backgroundImage: `url(${import.meta.env.DEV ? p.img : import.meta.env.BASE_URL.replace(/\/$/, '') + p.img})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
