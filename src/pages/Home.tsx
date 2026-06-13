@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import Spotlight from '../components/Spotlight'
 import SectionReveal from '../components/SectionReveal'
 import ContactForm from '../components/ContactForm'
-import { experience, education, capstone } from '../data/experience'
+import { experiences, education } from '../data/experience'
 import { skills } from '../data/skills'
 
 export default function Home() {
@@ -30,22 +30,29 @@ export default function Home() {
 
           <SectionReveal>
             <h2>Experience</h2>
-            <div className="exp-header">
-              <h3>{experience.title}</h3>
-              <span className="date">{experience.date}</span>
-            </div>
-            <div className="exp-sub">{experience.subtitle}</div>
-            <div className="exp-desc">
-              {experience.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-              <ul>
-                {experience.highlights.map((h, i) => (
-                  <li key={i}>{h}</li>
-                ))}
-              </ul>
-              <p>{experience.summary}</p>
-            </div>
+            {experiences.map((exp, idx) => (
+              <div key={idx} style={idx > 0 ? { marginTop: '1.8rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border-subtle)' } : undefined}>
+                <div className="exp-header">
+                  <h3>{exp.title}</h3>
+                  {exp.date && <span className="date">{exp.date}</span>}
+                </div>
+                {exp.subtitle && <div className="exp-sub">{exp.subtitle}</div>}
+                <div className="exp-desc">
+                  {exp.paragraphs?.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                  {exp.highlights && (
+                    <ul>
+                      {exp.highlights.map((h, i) => (
+                        <li key={i}>{h}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {exp.summary && <p>{exp.summary}</p>}
+                  {exp.description && <p>{exp.description}</p>}
+                </div>
+              </div>
+            ))}
           </SectionReveal>
 
           <SectionReveal>
@@ -55,16 +62,6 @@ export default function Home() {
               <span className="date">{education.date}</span>
             </div>
             <div className="exp-sub">{education.school}</div>
-          </SectionReveal>
-
-          <SectionReveal>
-            <h2>Capstone Project</h2>
-            <div className="exp-header">
-              <h3>{capstone.title}</h3>
-            </div>
-            <div className="project-desc">
-              <p>{capstone.description}</p>
-            </div>
           </SectionReveal>
 
           <SectionReveal>

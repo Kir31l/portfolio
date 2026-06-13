@@ -431,7 +431,7 @@ body {
 
 .top-nav-brand {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
@@ -464,7 +464,7 @@ body {
 
 .top-nav-links a {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.68rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -638,7 +638,7 @@ body {
 }
 
 .spotlight-desc {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: rgba(255,255,255,0.7);
   max-width: 480px;
   margin-bottom: 1.5rem;
@@ -652,7 +652,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
@@ -780,7 +780,7 @@ body {
 }
 
 .showcase-tagline {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto 1.5rem;
@@ -796,7 +796,7 @@ body {
 
 .showcase-actions a {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -867,7 +867,7 @@ body {
 
 .feature-project-links a {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -950,7 +950,7 @@ section.revealed {
 
 section h2 {
   font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -964,12 +964,12 @@ section h2 {
 /* P5R h2: skewed */
 :root:not([data-theme="light"]) section h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 0.25em;
 }
 
 section p {
-  font-size: 0.92rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   font-family: var(--font-body);
 }
@@ -986,8 +986,8 @@ section p {
 .skills-grid span {
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
-  padding: 0.35rem 1rem;
-  font-size: 0.78rem;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   font-family: var(--font-mono);
@@ -1027,7 +1027,7 @@ section p {
 }
 
 .exp-header h3, .edu-header h3 {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: 0.07em;
@@ -1037,19 +1037,19 @@ section p {
 :root:not([data-theme="light"]) .exp-header h3,
 :root:not([data-theme="light"]) .edu-header h3 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   letter-spacing: 0.12em;
 }
 
 .exp-header .date, .edu-header .date {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--accent);
   letter-spacing: 0.12em;
   font-family: var(--font-mono);
 }
 
 .exp-sub {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   margin-bottom: 0.8rem;
   letter-spacing: 0.06em;
@@ -1057,7 +1057,7 @@ section p {
 }
 
 .exp-desc p, .project-desc p {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   margin-bottom: 0.8rem;
 }
@@ -1071,7 +1071,7 @@ section p {
 }
 
 .exp-desc ul li, .project-desc ul li {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   padding: 0.15rem 0 0.15rem 1.1rem;
   position: relative;
@@ -1137,7 +1137,7 @@ section p {
 }
 
 .cert-card .label {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.03em;
@@ -1148,8 +1148,8 @@ section p {
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.35rem 1rem;
-  font-size: 0.72rem;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -1170,7 +1170,7 @@ footer {
   text-align: center;
   padding: 1.5rem 2rem;
   color: var(--footer-text);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   border-top: 1px solid var(--border-subtle);
@@ -1239,12 +1239,12 @@ footer {
   .sidebar-inner { padding: 1rem; }
   .profile-photo { width: 60px; height: 60px; }
   .sidebar-name { font-size: 1rem !important; }
-  .sidebar-contact-item { font-size: 0.6rem; padding: 0.25rem 0.4rem; }
+  .sidebar-contact-item { font-size: 0.68rem; padding: 0.25rem 0.4rem; }
   section { padding: 1rem 0.8rem; }
   .showcase-hero { padding: 1.5rem 1rem; }
   .showcase-hero h1 { font-size: 1.2rem; }
   :root:not([data-theme="light"]) .showcase-hero h1 { font-size: 1.4rem; }
-  .showcase-tagline { font-size: 0.8rem; }
+  .showcase-tagline { font-size: 0.88rem; }
   .feature-projects { padding: 1.2rem 1rem; }
   .feature-projects h2 { font-size: 1rem; }
   :root:not([data-theme="light"]) .feature-projects h2 { font-size: 1.1rem; }
@@ -1256,7 +1256,7 @@ footer {
   .spotlight-desc { font-size: 0.78rem; max-width: 100%; margin-bottom: 1rem; }
   .spotlight-badges { gap: 0.3rem; }
   .spotlight-badges span { font-size: 0.5rem; padding: 0.2rem 0.5rem; }
-  .spotlight-cta { font-size: 0.6rem; padding: 0.5rem 1.2rem; }
+  .spotlight-cta { font-size: 0.68rem; padding: 0.5rem 1.2rem; }
   .spotlight-indicators span { width: 18px; }
   .spotlight-slide-bg::after {
     background: linear-gradient(0deg,
@@ -1268,7 +1268,7 @@ footer {
   }
   .top-nav { padding: 0.5rem 0.8rem; gap: 0.4rem; flex-wrap: wrap; }
   .top-nav-links { gap: 0.1rem; flex-wrap: wrap; }
-  .top-nav-links a { font-size: 0.5rem; padding: 0.2rem 0.3rem; }
+  .top-nav-links a { font-size: 0.6rem; padding: 0.2rem 0.3rem; }
   .nav-back { font-size: 0.85rem; padding: 0.15rem 0.35rem; }
   .exp-header, .edu-header { flex-direction: column; gap: 0.2rem; }
 }
@@ -1354,7 +1354,7 @@ section, .cert-card {
 }
 
 .project-content ul li {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   padding-left: 1.2rem;
   position: relative;
@@ -1710,9 +1710,9 @@ section, .cert-card {
 .contact-field input,
 .contact-field textarea {
   width: 100%;
-  padding: 0.7rem 1rem;
+  padding: 0.75rem 1rem;
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   background: var(--bg-primary);
   border: 1px solid var(--border-subtle);
   color: var(--text-primary);
@@ -1743,7 +1743,7 @@ section, .cert-card {
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
