@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <title>Jhon Nicole Landero</title>
   <script>
-    sessionStorage.redirect = location.pathname + location.search + location.hash;
-    location.replace('/portfolio/');
+    var path = location.pathname.replace(/^\/portfolio/, '') || '/';
+    location.replace('/portfolio/#' + path + location.search + location.hash);
   </script>
 </head>
 <body></body>
