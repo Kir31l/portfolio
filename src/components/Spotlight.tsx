@@ -116,10 +116,14 @@ export default function Spotlight() {
   }, [onDragEnd])
 
   // Click guard: prevent link navigation when dragged
-  const handleCtaClick = useCallback((e: React.MouseEvent, url: string) => {
+  const handleCtaClick = useCallback((e: React.MouseEvent, url: string, external?: boolean) => {
     if (dragRef.current.wasDragged) {
       e.preventDefault()
       return
+    }
+    if (external) {
+      // External link — open in new tab
+      return // let the <a> tag's native behavior handle it (target="_blank")
     }
     e.preventDefault()
     navigate(url)
@@ -151,7 +155,13 @@ export default function Spotlight() {
             <div
               className="spotlight-slide-bg"
               style={{
-                backgroundImage: `url(${import.meta.env.DEV ? p.img : import.meta.env.BASE_URL.replace(/\/$/, '') + p.img})`,
+                ...(p.img
+                  ? {
+                      backgroundImage: `url(${import.meta.env.DEV ? p.img : import.meta.env.BASE_URL.replace(/\/$/, '') + p.img})`,
+                    }
+                  : {
+                      background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+                    }),
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
@@ -167,9 +177,11 @@ export default function Spotlight() {
               <a
                 className="spotlight-cta"
                 href={p.url}
-                onClick={(e) => handleCtaClick(e, p.url)}
+                target={p.external ? '_blank' : undefined}
+                rel={p.external ? 'noopener noreferrer' : undefined}
+                onClick={(e) => handleCtaClick(e, p.url, p.external)}
               >
-                {'\u25B6'} View Project
+                {'\u25B6'} {p.external ? 'Play on Itch.io' : 'View Project'}
               </a>
             </div>
           </div>

@@ -3,7 +3,8 @@ export interface Project {
   desc: string
   badges: string[]
   url: string
-  img: string
+  img?: string
+  external?: boolean
 }
 
 export const spotlightData: Project[] = [
@@ -34,6 +35,13 @@ export const spotlightData: Project[] = [
     badges: ['Tool', 'Vanilla JS', '2026'],
     url: '/sort',
     img: '/assets/images/sort.png',
+  },
+  {
+    title: '2D Platformer',
+    desc: 'A browser-based platformer with wall sliding, double jump, and basic movement mechanics — built as a Unity prototype.',
+    badges: ['Game', 'Unity', '2026'],
+    url: 'https://kir31l.itch.io/platformer',
+    external: true,
   },
 ]
 
