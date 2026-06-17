@@ -13,4 +13,6 @@ export const skills: string[] = [
   'Shopify Development',
   'Excel & Report Automation',
   'Agile Development',
+  'Unity',
+  'Git & GitHub',
 ]
