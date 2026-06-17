@@ -8,11 +8,11 @@ export function useAmbientSound() {
 
   const getAudioPath = useCallback(() => {
     const file = isLight ? 'Color Your Night.mp3' : 'Beneath the Mask -rain-.mp3'
-    return `/assets/music/${encodeURIComponent(file)}`
+    return `${import.meta.env.BASE_URL}assets/music/${encodeURIComponent(file)}`
   }, [isLight])
 
   const getGifPath = useCallback(() => {
-    return `/assets/music/${isLight ? 'p3.gif' : 'p5.gif'}`
+    return `${import.meta.env.BASE_URL}assets/music/${isLight ? 'p3.gif' : 'p5.gif'}`
   }, [isLight])
 
   const saveState = useCallback((playing: boolean, time: number) => {

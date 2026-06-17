@@ -21,7 +21,7 @@ export default function Certificates() {
               {certificates.map((cert, i) => (
                 <div className="cert-card" key={i}>
                   <span className="label">{cert.label}</span>
-                  <a href={cert.file} target="_blank" rel="noopener noreferrer">
+                  <a href={`${import.meta.env.BASE_URL}${cert.file.slice(1)}`} target="_blank" rel="noopener noreferrer">
                     View
                   </a>
                 </div>
