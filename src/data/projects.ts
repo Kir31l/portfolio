@@ -41,6 +41,7 @@ export const spotlightData: Project[] = [
     desc: 'A browser-based platformer with wall sliding, double jump, and basic movement mechanics — built as a Unity prototype.',
     badges: ['Game', 'Unity', '2026'],
     url: 'https://kir31l.itch.io/platformer',
+    img: '/assets/images/platformer.png',
     external: true,
   },
 ]
